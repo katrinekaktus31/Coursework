@@ -7,3 +7,6 @@ def home(request):
     # return HttpResponse("Hello world")
     return render(request, 'gis/home.html')
 
+
+def about(request):
+    return render(request, 'gis/about.html')
