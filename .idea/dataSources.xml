@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="db" uuid="df2961a5-c298-48d2-8f90-1ed43009a441">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Seva2\2013-14\2015-2016\ProgramGIS\2020\PyCharm_projects\GISDjango\db.sqlite3</jdbc-url>
+    </data-source>
+  </component>
+</project>

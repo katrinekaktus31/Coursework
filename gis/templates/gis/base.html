@@ -1,4 +1,4 @@
-{% comment %}{% load staticfiles %}{% endcomment %}
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,7 +33,8 @@
       }
     </style>
     <!-- Custom styles for this template-->
-    <link href="{% comment %}{% static 'gis/styles.css' %}{% endcomment %}" rel="stylesheet">
+    <link href="{% static 'gis/styles.css' %}" rel="stylesheet">
+    <link href="{% comment %}{{STATIC_URL}} gis/styles.css{% endcomment %}" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -69,7 +70,7 @@
   </div>
 </nav>
 
-<main role="main" class="container margin_block" style="margin-top: 80px;">
+<main role="main" class="container margin_block">
     {% block content%}{% endblock %}
 </main><!-- /.container -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
