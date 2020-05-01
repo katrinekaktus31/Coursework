@@ -19,5 +19,6 @@ import gis.views
 urlpatterns = [
     url(r'^$', gis.views.home, name='home'),
     url(r'^home', gis.views.home, name='home'),
+    url(r'^gis_online', gis.views.gis_online, name='gis_online'),
     url(r'^about/$', gis.views.about, name='about'),
 ]
