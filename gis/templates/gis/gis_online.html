@@ -23,13 +23,16 @@
       "esri/widgets/BasemapGallery",
       "esri/layers/FeatureLayer",
       "esri/Graphic",
-      "esri/geometry/geometryEngine"
-    ], function(Map, MapView, BasemapToggle, BasemapGallery,FeatureLayer,Graphic, geometryEngine) {
+      "esri/geometry/geometryEngine",
+      "esri/widgets/Search",
+      "esri/widgets/Locate"
+    ], function(Map, MapView, BasemapToggle, BasemapGallery,FeatureLayer,Graphic, geometryEngine,Search,Locate) {
 
 
     var map = new Map({
       basemap: "topo-vector"
     });
+
 
     var view = new MapView({
       container: "viewDiv",
@@ -37,6 +40,24 @@
       center: [30.51559, 50.372416], // longitude, latitude 30°32'32.2 50°27'56.0
       zoom: 10
     });
+
+    var locate = new Locate({
+        view: view,
+        useHeadingEnabled: false,
+        goToOverride: function(view, options) {
+          options.target.scale = 1500;  // Override the default map scale
+          return view.goTo(options.target);
+        }
+      });
+
+      view.ui.add(locate, "top-left");
+
+    // Search widget
+      var search = new Search({
+        view: view
+      });
+      view.ui.add(search, "top-right" );
+
     var basemapToggle = new BasemapToggle({
         view: view,
         nextBasemap: "satellite"
@@ -111,6 +132,7 @@
         }
       });
       view.graphics.add(bufferGraphic);
+      view.ui.add(bufferGraphic,"top-left");
     }
     view.on("pointer-move", function(event){
       findNearestGraphic(event).then(function(graphic){
@@ -121,6 +143,7 @@
         }
       });
     });
+
   });
      </script>
 {% endblock %}
