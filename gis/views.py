@@ -12,5 +12,5 @@ def about(request):
     return render(request, 'gis/about.html')
 
 
-def gis_online(request):
-    return render(request, 'gis/gis_online.html')
+def add_layer(request):
+    return render(request, 'gis/add_layer.html')
