@@ -1,0 +1,13 @@
+{% extends 'gis/base.html' %}
+
+
+
+{% block content %}
+    <h1>Articles about this earthquake</h1>
+    <div class="starter-template">
+
+        {% for x in obj %}
+            {{x.title}}
+        {% endfor %}
+    </div>
+{% endblock %}

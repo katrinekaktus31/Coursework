@@ -13,9 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-
     <meta name="theme-color" content="#563d7c">
-
 
     <style>
       .bd-placeholder-img {
@@ -38,6 +36,7 @@
     <link href="{% comment %}{{STATIC_URL}} gis/styles.css{% endcomment %}" rel="stylesheet">
 
       {% block add_layer_head %}{% endblock %}
+      {% block earthqueaks_head %}{% endblock %}
   </head>
   <body class = "claro">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -48,6 +47,14 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+            <a class="nav-link" href="{% url 'earthquaks2' %}"> Earthquake Monitoring 2D</a>
+      </li>
+
+
+      <li class="nav-item">
+            <a class="nav-link" href="{% url 'earthqueaks' %}"> Earthquake Monitoring 3D</a>
+      </li>
 
       <li class="nav-item">
             <a class="nav-link" href="{% url 'add_layer' %}">Add Layer</a>

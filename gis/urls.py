@@ -19,6 +19,9 @@ import gis.views
 urlpatterns = [
     url(r'^$', gis.views.home, name='home'),
     url(r'^home', gis.views.home, name='home'),
+    url(r'^earthquaks2', gis.views.earthquaks2, name='earthquaks2'),
+    url(r'^earthqueaks', gis.views.earthqueaks, name='earthqueaks'),
     url(r'^add_layer', gis.views.add_layer, name='add_layer'),
     url(r'^about/$', gis.views.about, name='about'),
+    url(r'^article/$', gis.views.article, name='article'),
 ]
