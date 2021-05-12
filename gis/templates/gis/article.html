@@ -1,13 +1,23 @@
 {% extends 'gis/base.html' %}
 
-
-
 {% block content %}
-    <h1>Articles about this earthquake</h1>
-    <div class="starter-template">
+<style>
+h1{
+    text-align: center;
+    color: #772953;
+}
 
-        {% for x in obj %}
-            {{x.title}}
-        {% endfor %}
-    </div>
+h2{
+    font-family: sans-serif, cursive;
+}
+
+</style>
+
+<h1>Articles</h1>
+{% for x in obj %}
+    <h2><a href="{{x.url}}" >{{ x.title }}</a></h2>
+    <p>{{x.short_text}}</p>
+{% endfor %}
+
+
 {% endblock %}

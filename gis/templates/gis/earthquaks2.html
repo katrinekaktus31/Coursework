@@ -31,11 +31,12 @@
       require([
         "esri/Map",
         "esri/layers/GeoJSONLayer",
+        "esri/popup/FieldInfo",
         "esri/views/MapView"
-      ], function (Map, GeoJSONLayer, MapView) {
+      ], function (Map, GeoJSONLayer, FieldInfo, MapView) {
         // If GeoJSON files are not on the same domain as your website, a CORS enabled server
         // or a proxy is required.
-        const url ="./static/tableQuake.geojson";
+        const url ="./static/earthQuake.geojson";
 
         // Paste the url into a browser's address bar to download and view the attributes
         // in the GeoJSON file. These attributes include:
@@ -45,18 +46,45 @@
         // * time - the time of the event
         // Use the Arcade Date() function to format time field into a human-readable format
 
+
+
+         // Defines an action to zoom out from the selected feature
+       var defineArticleAction = {
+         // This text is displayed as a tooltip
+         title: "Find the articles",
+         // The ID used to reference this action in the event handler
+         id: "find_art"
+        };
+
         const template = {
           title: "Earthquake Info",
           content: "Magnitude {mag} hit {place}",
+          {#content: popupChange,#}
           fieldInfos: [
             {
-              fieldName: "datetime",
-              format: {
-                dateFormat: "short-date-short-time"
-              }
+              fieldName: "{earthquake_id}",
+              visible: false,
             }
-          ]
+          ],
+           actions: [defineArticleAction]
         };
+
+
+// The function used for the PopupTemplate
+function getInfo(feature) {
+  let graphic, attributes, content;
+  graphic = feature.graphic;
+  attributes = graphic.attributes;
+  content =  "In year 2000:- " + attributes.pop2000 ;
+  return content;
+}
+
+        // Execute each time the "Edit feature" action is clicked
+        function find_art() {
+            var fk = template.content
+            console.log(fk)
+        }
+
 
         const renderer = {
           type: "simple",
@@ -86,6 +114,15 @@
           ]
         };
 
+        {#function popupChange(feature) {#}
+        {#  var div = document.createElement("div");#}
+        {##}
+        {#  // Add green arrow if the percent change is positive and a red arrow for negative percent change.#}
+        {#  div.innerHTML =#}
+        {#      features[0].id#}
+        {#   return div;#}
+        {#};#}
+
         const geojsonLayer = new GeoJSONLayer({
           url: url,
           popupTemplate: template,
@@ -104,7 +141,17 @@
           zoom: 4,
           map: map
         });
+
+        // Event handler that fires each time an action is clicked
+        view.popup.on("trigger-action", function (event) {
+          if (event.action.id === "find_art") {
+            find_art();
+          }
+        });
       });
+
+    {#var calDiv = document.querySelector(class = esri-feature-content);#}
+    {#calDiv.addEventListener("click", changeFigure3);#}
     </script>
 
 
